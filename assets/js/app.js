@@ -87,15 +87,15 @@ const onStdUpdate = (ele) => {
     });
     setStdInfoDetails();// here the updated values pass to the localStorage we pass the whole updated stdArr.
     // templating(stdArr);// again run templating function to update the table of the UI.
-    let getUpdateEle = [...document.querySelectorAll("#stdInfoContainer [data-id]")];// gives the all button which having data-id attribute
-    let findEle = getUpdateEle.find(ele => ele.dataset.id === getUpdateId);// it find that element having same id compared to getUpdateId
-    let updateEle = [...findEle.parentElement.parentElement.children];// it gives the 'tr' of that id element and returns the htmlcollection which changes to array and it contents all 'td'.
-    cl(updateEle);
-    // cl(updateEle[1].innerText);
-    updateEle[1].innerText = fname.value;
-    updateEle[2].innerText = lname.value;
-    updateEle[3].innerText = email.value;
-    updateEle[4].innerText = number.value;
+    let getUpdateEle = [...document.querySelector(`#stdInfoContainer [data-id = "${getUpdateId}"]`).closest("tr").children];
+    // first we select button by querySelector whose id is getUpdateId querySelector gives first occurence element i.e edit then we apply closest method to find tr then we apply childeren property to get the child of that tr and it returns html collection so we wrapped them into array by spread operator.
+    
+    // cl(getUpdateEle);
+    // // cl(getUpdateEle[1].innerText);
+    getUpdateEle[1].innerText = fname.value;
+    getUpdateEle[2].innerText = lname.value;
+    getUpdateEle[3].innerText = email.value;
+    getUpdateEle[4].innerText = number.value;
     stdSubmit.reset();
 
     btnUpdate.classList.add("d-none");
